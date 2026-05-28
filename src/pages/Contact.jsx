@@ -57,9 +57,11 @@ export default function Contact() {
           .contact-map { height: 200px !important; }
           .contact-map p { font-size: 0.75rem !important; }
           .faq-question { font-size: 0.8rem !important; }
+          #contact-submit-btn { width: 100% !important; justify-content: center !important; }
         }
         @media (max-width: 480px) {
           .contact-submit-btn { width: 100% !important; justify-content: center !important; }
+          .contact-info-value { font-size: 0.82rem !important; }
         }
       `}</style>
       {/* Header */}

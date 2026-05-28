@@ -8,6 +8,7 @@ const footerLinks = {
     { to: '/gallery', label: 'Gallery' },
   ],
   'Get Involved': [
+    { to: '/join', label: 'Join Membership' },
     { to: '/donate', label: 'Donate' },
     { to: '/contact', label: 'Contact Us' },
   ],

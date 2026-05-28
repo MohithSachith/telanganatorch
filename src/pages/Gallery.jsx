@@ -25,19 +25,21 @@ export default function Gallery() {
       <style>{`
         @media (max-width: 768px) {
           .gallery-header { padding: 3.5rem 1.25rem 3rem !important; }
-          .gallery-header h1 { font-size: clamp(2rem, 8vw, 3rem) !important; }
+          .gallery-header h1 { font-size: clamp(1.8rem, 7vw, 2.8rem) !important; }
           .gallery-filters { top: 60px !important; }
-          .gallery-filter-bar { padding: 0 1.25rem !important; }
-          .gallery-filter-bar button { padding: 0.9rem 1.1rem !important; font-size: 0.75rem !important; }
-          .gallery-grid-section { padding: 2rem 1.25rem 4rem !important; }
-          .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important; gap: 1rem !important; }
-          .gallery-img { height: 220px !important; }
-          .gallery-lightbox-nav button { padding: 0.6rem 1.2rem !important; font-size: 0.85rem !important; }
+          .gallery-filter-bar { padding: 0 0.75rem !important; }
+          .gallery-filter-bar button { padding: 0.85rem 0.9rem !important; font-size: 0.72rem !important; }
+          .gallery-grid-section { padding: 2rem 1rem 4rem !important; }
+          .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem !important; }
+          .gallery-img { height: 180px !important; }
+          .gallery-lightbox-nav { flex-wrap: wrap !important; gap: 0.5rem !important; }
+          .gallery-lightbox-nav button { flex: 1 1 auto !important; min-width: 80px !important; padding: 0.6rem 1rem !important; font-size: 0.82rem !important; }
         }
         @media (max-width: 480px) {
           .gallery-grid { grid-template-columns: 1fr !important; }
-          .gallery-img { height: 200px !important; }
+          .gallery-img { height: 220px !important; }
           .gallery-lightbox-inner { width: 98% !important; }
+          .gallery-header h1 { font-size: clamp(1.6rem, 9vw, 2.4rem) !important; }
         }
       `}</style>
       {/* HEADER - More Golden & Dramatic */}

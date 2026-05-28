@@ -282,6 +282,12 @@
 
 /* ── GLOBAL MOBILE RESPONSIVENESS ── */
 
+/* Prevent horizontal overflow globally */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 /* Touch-friendly scrollbars for horizontal scroll containers */
 .scroll-container,
 [style*="overflowX: auto"],
@@ -291,48 +297,139 @@
 }
 .scroll-container::-webkit-scrollbar { display: none; }
 
+/* Inputs and selects always fill their container */
+input, select, textarea {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 @media (max-width: 768px) {
   /* Reduce section padding globally */
   main > section {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
   }
 
   /* Smaller section heading on mobile */
   .section-heading {
-    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    font-size: clamp(1.8rem, 6vw, 2.8rem) !important;
+  }
+
+  /* Section label centered on mobile */
+  .section-label {
+    justify-content: center;
+    text-align: center;
   }
 
   /* Buttons should never overflow on small screens */
   .btn-primary,
   .btn-outline,
   .btn-outline-light {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.08em !important;
+    width: 100%;
+    justify-content: center !important;
+    text-align: center !important;
+    box-sizing: border-box;
+  }
+
+  /* Button groups — stack vertically */
+  .btn-group-row {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
   }
 
   /* Projects page hero padding */
   section.relative.pt-36 { padding-top: 7rem !important; }
 
   /* Navbar height compensation */
-  main[style*="paddingTop: '80px'"] { padding-top: 68px !important; }
+  main { padding-top: 68px !important; }
+
+  /* Cards in grids should not overflow */
+  .card-heritage {
+    min-width: 0;
+    word-break: break-word;
+  }
+
+  /* Gallery filter bar: smaller buttons + full scroll */
+  .gallery-filter-bar button {
+    padding: 0.85rem 1rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  /* About timeline: left-aligned single column */
+  .timeline-line { left: 16px !important; }
+  .timeline-row {
+    flex-direction: column !important;
+    padding-left: 42px !important;
+    position: relative;
+  }
+  .timeline-content {
+    text-align: left !important;
+    flex: none !important;
+    width: 100% !important;
+  }
+  .timeline-spacer { display: none !important; }
+  .timeline-dot {
+    position: absolute !important;
+    left: 10px !important;
+    top: 1.2rem !important;
+    transform: none !important;
+  }
+
+  /* Join form: collapse 2-col grids to 1-col */
+  .form-grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Join wizard step bar: hide labels on small screens */
+  .wizard-steps { display: none !important; }
+  .wizard-steps-mobile { display: block !important; }
+
+  /* Footer grid */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
+  .footer-brand {
+    grid-column: 1 / -1 !important;
+  }
+  .footer-bottom {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 0.5rem !important;
+  }
 }
 
 @media (max-width: 480px) {
   .section-heading {
-    font-size: clamp(1.6rem, 7vw, 2.4rem);
+    font-size: clamp(1.6rem, 7vw, 2.4rem) !important;
   }
 
   .section-subheading {
-    font-size: 0.95rem;
+    font-size: 0.95rem !important;
   }
 
   .btn-primary,
   .btn-outline,
   .btn-outline-light {
-    padding: 0.7rem 1.25rem;
-    font-size: 0.75rem;
+    padding: 0.7rem 1.25rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Footer: single column */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .footer-brand {
+    grid-column: auto !important;
+  }
+
+  /* Partners list: smaller font */
+  .about-partners-list div {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 1rem !important;
   }
 }
 

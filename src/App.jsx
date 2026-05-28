@@ -8,6 +8,7 @@ import Projects from './pages/Projects'
 import Gallery from './pages/Gallery'
 import Donate from './pages/Donate'
 import Contact from './pages/Contact'
+import Join from './pages/Join'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -29,6 +30,7 @@ export default function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/donate" element={<Donate />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/join" element={<Join />} />
       </Routes>
       <Footer />
     </BrowserRouter>

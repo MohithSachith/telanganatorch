@@ -7,6 +7,7 @@ const navLinks = [
   { to: '/projects', label: 'Projects' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/donate', label: 'Donate' },
+  { to: '/join', label: 'Join Us' },
   { to: '/contact', label: 'Contact' },
 ]
 
@@ -91,41 +92,47 @@ export default function Navbar() {
         <nav style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }} className="desktop-nav">
           {navLinks.map(({ to, label }) => {
             const isDonate = to === '/donate'
+            const isJoin = to === '/join'
+            const isCTA = isDonate || isJoin
+            const accentColor = isDonate ? 'var(--color-gold)' : 'var(--color-primary-light)'
+            const bgAccent = isDonate ? 'rgba(201, 166, 107, 0.08)' : 'rgba(166, 90, 58, 0.08)'
+            const hoverBg = isDonate ? 'var(--color-gold)' : 'var(--color-primary-light)'
+            const hoverText = isDonate ? '#0F0F0F' : '#FFFFFF'
+
             return (
               <NavLink
                 key={to}
                 to={to}
                 end={to === '/'}
                 style={({ isActive }) => ({
-                  padding: isDonate ? '0.5rem 1.25rem' : '0.5rem 1rem',
+                  padding: isCTA ? '0.5rem 1.25rem' : '0.5rem 1rem',
                   fontSize: '0.8rem',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
-                  fontWeight: isDonate ? 600 : 500,
-                  color: isActive ? 'var(--color-gold)' : isDonate ? 'var(--color-gold)' : 'rgba(232, 220, 203, 0.85)',
+                  fontWeight: isCTA ? 600 : 500,
+                  color: isActive ? 'var(--color-gold)' : isCTA ? accentColor : 'rgba(232, 220, 203, 0.85)',
                   textDecoration: 'none',
-                  border: isDonate ? '1px solid var(--color-gold)' : 'none',
-                  borderBottom: !isDonate && isActive ? '1px solid var(--color-gold)' : !isDonate ? '1px solid transparent' : undefined,
-                  borderRadius: isDonate ? '2px' : '0',
-                  marginLeft: isDonate ? '1rem' : '0',
+                  border: isCTA ? `1px solid ${accentColor}` : 'none',
+                  borderBottom: !isCTA && isActive ? '1px solid var(--color-gold)' : !isCTA ? '1px solid transparent' : undefined,
+                  borderRadius: isCTA ? '2px' : '0',
+                  marginLeft: isCTA ? '0.5rem' : '0',
                   transition: 'all 0.3s ease',
-                  background: isDonate ? 'rgba(201, 166, 107, 0.08)' : 'transparent',
+                  background: isCTA ? bgAccent : 'transparent',
                 })}
                 onMouseEnter={e => {
-                  if (to !== '/donate') e.currentTarget.style.color = 'var(--color-gold)'
+                  if (!isCTA) e.currentTarget.style.color = 'var(--color-gold)'
                   else {
-                    e.currentTarget.style.background = 'var(--color-gold)'
-                    e.currentTarget.style.color = '#0F0F0F'
+                    e.currentTarget.style.background = hoverBg
+                    e.currentTarget.style.color = hoverText
                   }
                 }}
                 onMouseLeave={e => {
-                  if (to !== '/donate') {
-                    // Check if it is active using path
+                  if (!isCTA) {
                     const active = pathname === to || (to === '/' && pathname === '/')
                     e.currentTarget.style.color = active ? 'var(--color-gold)' : 'rgba(232, 220, 203, 0.85)'
                   } else {
-                    e.currentTarget.style.background = 'rgba(201, 166, 107, 0.08)'
-                    e.currentTarget.style.color = 'var(--color-gold)'
+                    e.currentTarget.style.background = bgAccent
+                    e.currentTarget.style.color = accentColor
                   }
                 }}
               >

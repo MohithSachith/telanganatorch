@@ -89,11 +89,13 @@ export default function Donate() {
           .donate-help-grid { grid-template-columns: 1fr 1fr !important; gap: 1rem !important; }
           .donate-form-section { padding: 3rem 1.25rem 4rem !important; }
           .donate-form-inner { padding: 1.5rem !important; }
+          .donate-form-inner button[type="submit"] { font-size: 0.82rem !important; }
         }
         @media (max-width: 480px) {
           .donate-impact-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .donate-help-grid { grid-template-columns: 1fr !important; }
           .donate-impact-value { font-size: 1.6rem !important; }
+          .donate-form-section .section-subheading { font-size: 0.88rem !important; }
         }
       `}</style>
 
