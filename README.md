@@ -101,8 +101,8 @@ npm run preview
 
 This project is developed and maintained by the following core contributors:
 
-*   **Madhu Maneesh**
 *   **Mohith**
+*   **Madhu Maneesh**
 
 ---
 
