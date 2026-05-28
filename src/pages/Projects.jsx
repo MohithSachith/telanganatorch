@@ -322,10 +322,10 @@ export default function Projects() {
             Your foundational contributions directly finance field coordinate instrumentation equipment, regional researcher baseline stipends, and accessible secure data archive mapping deployments.
           </p>
           <Link
-            to="/donate"
+            to="/join"
             className="inline-flex items-center gap-3 font-sans text-[11px] tracking-[0.25em] uppercase bg-[#D4AF37] text-black px-8 py-4 font-medium transition-all duration-300 hover:bg-[#F3D36C] hover:-translate-y-0.5 shadow-xl shadow-black/40"
           >
-            Fund Field Operations <span>→</span>
+            Join Our Mission <span>→</span>
           </Link>
         </div>
       </section>

@@ -10,7 +10,7 @@ A premium digital portal dedicated to documenting, archiving, and preserving the
 *   **Dynamic Projects Hub:** Interactive cataloging system of ongoing and completed research initiatives (e.g., forgotten temple mapping, Nizam-era archives, youth workshops). Users can search and filter by category (Documentation, Community, Research, Film, Education).
 *   **Interactive Gallery:** A fully responsive masonry layout displaying high-resolution documentation of events, walks, exhibitions, and archaeological surveys, complete with category-based filtering and a customized, touch-friendly image lightbox.
 *   **Interactive Storyline & Timeline:** A visual walkthrough of the organization's history, milestones, and mission details on the About page.
-*   **Supporter Portal (Donate):** Interactive page outlining how users can support heritage conservation, showing direct impact statistics, and providing clear support paths.
+*   **Join Portal:** Interactive registration form outlining how users can join the organization as members or volunteers, complete with step-by-step sign-up logic.
 *   **Fully Mobile-Responsive:** Tailored experience across all screen sizes (mobile-first styling rules, touch-scrollable horizontal navigation, and responsive typography).
 
 ---
@@ -45,7 +45,7 @@ torch/
 │   │   ├── About.jsx       # Organization mission, vision, and timeline
 │   │   ├── Projects.jsx    # Projects archive with category filters & search
 │   │   ├── Gallery.jsx     # Masonry visual gallery with lightbox detail views
-│   │   ├── Donate.jsx      # Support portals and impact metrics
+│   │   ├── Join.jsx        # Member registration and onboarding wizard
 │   │   └── Contact.jsx     # FAQ accordion and stylized message portal
 │   ├── App.css             # Main stylesheet imports
 │   ├── App.jsx             # Global routing and page wrapper
