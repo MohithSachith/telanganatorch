@@ -9,7 +9,6 @@ const footerLinks = {
   ],
   'Get Involved': [
     { to: '/join', label: 'Join Membership' },
-    { to: '/donate', label: 'Donate' },
     { to: '/contact', label: 'Contact Us' },
   ],
 }
@@ -31,17 +30,6 @@ export default function Footer() {
           .footer-brand { grid-column: auto !important; }
         }
       `}</style>
-      {/* Top CTA strip */}
-      <div className="footer-cta-strip" style={{
-        background: 'linear-gradient(90deg, var(--color-secondary), var(--color-gold), var(--color-secondary))',
-        padding: '1.25rem 2rem',
-        textAlign: 'center',
-      }}>
-        <p style={{ margin: 0, fontSize: '0.875rem', letterSpacing: '0.1em', color: '#0F0F0F', fontWeight: 600, textTransform: 'uppercase' }}>
-          Help Preserve Telangana's Living Heritage — <Link to="/donate" style={{ color: '#0F0F0F', fontWeight: 700, textDecoration: 'underline' }}>Donate Today</Link>
-        </p>
-      </div>
-
       <div className="footer-main" style={{ maxWidth: '1280px', margin: '0 auto', padding: '4rem 2rem 2rem' }}>
         <div className="footer-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '3rem', marginBottom: '3rem' }}>
           {/* Brand */}

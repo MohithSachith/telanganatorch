@@ -6,7 +6,6 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Projects from './pages/Projects'
 import Gallery from './pages/Gallery'
-import Donate from './pages/Donate'
 import Contact from './pages/Contact'
 import Join from './pages/Join'
 
@@ -28,7 +27,6 @@ export default function App() {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/donate" element={<Donate />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/join" element={<Join />} />
       </Routes>

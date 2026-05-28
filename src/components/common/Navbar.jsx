@@ -6,7 +6,6 @@ const navLinks = [
   { to: '/about', label: 'About' },
   { to: '/projects', label: 'Projects' },
   { to: '/gallery', label: 'Gallery' },
-  { to: '/donate', label: 'Donate' },
   { to: '/join', label: 'Join Us' },
   { to: '/contact', label: 'Contact' },
 ]
@@ -91,13 +90,9 @@ export default function Navbar() {
         {/* Desktop Nav */}
         <nav style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }} className="desktop-nav">
           {navLinks.map(({ to, label }) => {
-            const isDonate = to === '/donate'
             const isJoin = to === '/join'
-            const isCTA = isDonate || isJoin
-            const accentColor = isDonate ? 'var(--color-gold)' : 'var(--color-primary-light)'
-            const bgAccent = isDonate ? 'rgba(201, 166, 107, 0.08)' : 'rgba(166, 90, 58, 0.08)'
-            const hoverBg = isDonate ? 'var(--color-gold)' : 'var(--color-primary-light)'
-            const hoverText = isDonate ? '#0F0F0F' : '#FFFFFF'
+            const accentColor = 'var(--color-primary-light)'
+            const bgAccent = 'rgba(166, 90, 58, 0.08)'
 
             return (
               <NavLink
@@ -105,29 +100,29 @@ export default function Navbar() {
                 to={to}
                 end={to === '/'}
                 style={({ isActive }) => ({
-                  padding: isCTA ? '0.5rem 1.25rem' : '0.5rem 1rem',
+                  padding: isJoin ? '0.5rem 1.25rem' : '0.5rem 1rem',
                   fontSize: '0.8rem',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
-                  fontWeight: isCTA ? 600 : 500,
-                  color: isActive ? 'var(--color-gold)' : isCTA ? accentColor : 'rgba(232, 220, 203, 0.85)',
+                  fontWeight: isJoin ? 600 : 500,
+                  color: isActive ? 'var(--color-gold)' : isJoin ? accentColor : 'rgba(232, 220, 203, 0.85)',
                   textDecoration: 'none',
-                  border: isCTA ? `1px solid ${accentColor}` : 'none',
-                  borderBottom: !isCTA && isActive ? '1px solid var(--color-gold)' : !isCTA ? '1px solid transparent' : undefined,
-                  borderRadius: isCTA ? '2px' : '0',
-                  marginLeft: isCTA ? '0.5rem' : '0',
+                  border: isJoin ? `1px solid ${accentColor}` : 'none',
+                  borderBottom: !isJoin && isActive ? '1px solid var(--color-gold)' : !isJoin ? '1px solid transparent' : undefined,
+                  borderRadius: isJoin ? '2px' : '0',
+                  marginLeft: isJoin ? '0.5rem' : '0',
                   transition: 'all 0.3s ease',
-                  background: isCTA ? bgAccent : 'transparent',
+                  background: isJoin ? bgAccent : 'transparent',
                 })}
                 onMouseEnter={e => {
-                  if (!isCTA) e.currentTarget.style.color = 'var(--color-gold)'
+                  if (!isJoin) e.currentTarget.style.color = 'var(--color-gold)'
                   else {
-                    e.currentTarget.style.background = hoverBg
-                    e.currentTarget.style.color = hoverText
+                    e.currentTarget.style.background = 'var(--color-primary-light)'
+                    e.currentTarget.style.color = '#FFFFFF'
                   }
                 }}
                 onMouseLeave={e => {
-                  if (!isCTA) {
+                  if (!isJoin) {
                     const active = pathname === to || (to === '/' && pathname === '/')
                     e.currentTarget.style.color = active ? 'var(--color-gold)' : 'rgba(232, 220, 203, 0.85)'
                   } else {

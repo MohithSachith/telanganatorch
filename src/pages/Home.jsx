@@ -545,7 +545,7 @@ export default function Home() {
             Become a Guardian of<br />the <span style={{ color: '#F5D97A' }}>Golden Legacy</span>
           </h2>
           <div className="home-cta-btns" style={{ display: 'flex', gap: '1.2rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/donate" className="btn-primary">Donate Today →</Link>
+            <Link to="/join" className="btn-primary">Join TORCH →</Link>
             <Link to="/contact" className="btn-ghost">Volunteer With Us</Link>
           </div>
         </AnimatedSection>
