@@ -1,12 +1,21 @@
 import { Link } from 'react-router-dom'
 
 const team = [
-  { name: 'Dr. Ramesh Babu', role: 'Founder & President', image: '/gallery/team/1.jpg', bio: 'Historian and archaeologist with 20+ years of research on Kakatiya and Qutb Shahi dynasties.' },
-  { name: 'Priya Venkateswari', role: 'Documentation Lead', image: '/gallery/team/2.jpg', bio: 'Architectural photographer and heritage conservationist. Led 100+ documentation expeditions.' },
-  { name: 'Mohammed Salim', role: 'Research Director', image: '/gallery/team/3.jpg', bio: 'Epigraphist specializing in Telugu and Persian inscriptions from medieval Deccan.' },
-  { name: 'Ananya Reddy', role: 'Outreach Coordinator', image: '/gallery/team/4.jpg', bio: 'Community engagement specialist driving TORCH\'s youth programs and school partnerships.' },
-  { name: 'Suresh Kumar', role: 'Field Operations', image: '/gallery/team/5.jpg', bio: 'Expedition leader who has surveyed over 300 heritage sites across Telangana\'s remote districts.' },
-  { name: 'Lakshmi Narayana', role: 'Treasurer & Trustee', image: '/gallery/team/6.jpg', bio: 'Retired IAS officer ensuring transparent governance and financial accountability at TORCH.' },
+  { name: 'Maharaja Kamal Chandra Bhanj Deo Kakatiya', role: 'Chief Patron & President', image: '/gallery/team/president_kamal.jpg', bio: 'Chief Patron and President of TORCH, descendant of the historic Kakatiya dynasty, actively leading cultural heritage preservation.' },
+  { name: 'Thula Raghuveer', role: 'Vice President & Trustee', image: '/gallery/team/raghuveer_tula.jpg', bio: 'Dedicated heritage preservationist and administrative lead, coordinating conservation initiatives across Telangana.' },
+  { name: 'Arusam Madhusudan (Mime Madhu)', role: 'Cultural Director & Trustee', image: '/gallery/team/mime_madhu.jpg', bio: 'Renowned mime artist and cultural advocate, promoting Telangana\'s folk traditions and performing arts.' },
+  { name: 'Adithya Pakide', role: 'Historian & Board Member', image: '/gallery/team/aditya.jpg', bio: 'Local historian and researcher specializing in documenting regional monuments and medieval inscriptions.' },
+  { name: 'Hanumadri Srikanth', role: 'Executive Member', image: '/gallery/team/hanumadri.jpg', bio: 'Field researcher and archivist focusing on cataloging rural temple architecture and oral histories.' },
+  { name: 'Kaviraju', role: 'Executive Member', image: '/gallery/team/karthikaraju.jpg', bio: 'Specializes in community outreach and local heritage awareness campaigns in remote districts.' },
+  { name: 'Katta Srinivas', role: 'Trustee', image: '/gallery/team/katta_srinivas.jpg', bio: 'Senior conservationist managing public relations and volunteer networks for restoration projects.' },
+  { name: 'Nanda Kishore', role: 'Advisory Board Member', image: '/gallery/team/nanda_kishore.jpg', bio: 'Heritage consultant providing technical expertise on ancient structures and structural preservation.' },
+  { name: 'Praveen Rao', role: 'Executive Member & Trustee', image: '/gallery/team/praveen_rao.jpg', bio: 'Active coordinator for educational heritage walks and youth engagement programs.' },
+  { name: 'Sai Kumar', role: 'Board Member', image: '/gallery/team/sai_kumar.jpg', bio: 'Field researcher specializing in mapping medieval trade routes and ancient settlements in Telangana.' },
+  { name: 'Seshabrahmam', role: 'Advisory Board Member', image: '/gallery/team/shesha_brahmam.jpg', bio: 'Epigraphist and linguistic scholar deciphering historic stone inscriptions and copper plate charters.' },
+  { name: 'Sunil', role: 'Executive Member', image: '/gallery/team/sunil.jpg', bio: 'Digital archivist leading the photography and cataloging of endangered rock art sites.' },
+  { name: 'Dr. K. Sharmila Reddy', role: 'Board Member', image: '/gallery/team/placeholder.png', bio: 'Academic researcher and advisor on intangible cultural heritage and local folklore traditions.' },
+  { name: 'Srinadh Reddy', role: 'Board Member', image: '/gallery/team/placeholder.png', bio: 'Environmental specialist advising on the integration of natural landscapes and heritage preservation.' },
+  { name: 'Sri Uha', role: 'Executive Member', image: '/gallery/team/sri_uha.jpg', bio: 'Archaeologist specializing in early historic settlements and material culture analysis.' },
 ]
 
 const timeline = [

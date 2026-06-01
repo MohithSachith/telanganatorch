@@ -3,11 +3,20 @@ import { galleryCategories, galleryImages } from '../data/galleryData';
 
 export default function Gallery() {
   const [active, setActive] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [lightbox, setLightbox] = useState(null);
 
-  const filtered = active === 'All' 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === active);
+  // Quick Filter Categories
+  const quickCategories = ['All', 'Stepped Wells', 'News', 'Medaram Jatara', 'Devunigutta', 'Heritage Walks'];
+
+  // Filter images by both active category and search query
+  const filtered = galleryImages.filter(img => {
+    const matchesCategory = active === 'All' || img.category === active;
+    const matchesSearch = searchQuery.trim() === '' || 
+      img.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      img.category.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   const currentIdx = lightbox !== null 
     ? filtered.findIndex(img => img.id === lightbox.id) 
@@ -27,8 +36,8 @@ export default function Gallery() {
           .gallery-header { padding: 3.5rem 1.25rem 3rem !important; }
           .gallery-header h1 { font-size: clamp(1.8rem, 7vw, 2.8rem) !important; }
           .gallery-filters { top: 60px !important; }
-          .gallery-filter-bar { padding: 0 0.75rem !important; }
-          .gallery-filter-bar button { padding: 0.85rem 0.9rem !important; font-size: 0.72rem !important; }
+          .gallery-filter-container { padding: 0.8rem 1rem !important; }
+          .filter-divider { display: none !important; }
           .gallery-grid-section { padding: 2rem 1rem 4rem !important; }
           .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 0.75rem !important; }
           .gallery-img { height: 180px !important; }
@@ -89,45 +98,179 @@ export default function Gallery() {
         </div>
       </section>
 
-      {/* FILTERS - Rich Gold */}
+      {/* ADVANCED FILTER & SEARCH PANEL */}
       <section className="gallery-filters" style={{ 
         backgroundColor: '#2A2119', 
         borderBottom: '1px solid rgba(232,185,35,0.3)', 
         position: 'sticky', 
         top: '64px', 
-        zIndex: 40 
+        zIndex: 40,
+        boxShadow: '0 4px 20px rgba(0,0,0,0.3)'
       }}>
-        <div className="gallery-filter-bar" style={{ 
-          maxWidth: '1280px', 
-          margin: '0 auto', 
-          padding: '0 2rem', 
-          display: 'flex', 
-          gap: 0, 
-          overflowX: 'auto',
-          WebkitOverflowScrolling: 'touch',
+        <div className="gallery-filter-container" style={{
+          maxWidth: '1280px',
+          margin: '0 auto',
+          padding: '0.8rem 2rem',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '1rem'
         }}>
-          {galleryCategories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActive(cat)}
+          {/* Left: Quick Filter Pills & Dropdown */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', flexWrap: 'wrap', flex: '1 1 auto' }}>
+            {/* Quick Pills */}
+            <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+              {quickCategories.map(cat => {
+                const isActive = active === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      setActive(cat);
+                    }}
+                    style={{
+                      padding: '0.5rem 1rem',
+                      background: isActive ? '#E8B923' : 'rgba(232,185,35,0.08)',
+                      border: '1px solid rgba(232,185,35,0.3)',
+                      color: isActive ? '#1A140F' : '#E8D9C7',
+                      fontSize: '0.78rem',
+                      letterSpacing: '0.05em',
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      fontWeight: isActive ? 600 : 500,
+                      borderRadius: '4px',
+                      transition: 'all 0.3s ease',
+                    }}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Divider on desktop */}
+            <div className="filter-divider" style={{
+              width: '1px',
+              height: '24px',
+              backgroundColor: 'rgba(232,185,35,0.25)',
+              display: 'block'
+            }} />
+
+            {/* Dropdown Select */}
+            <div style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <select
+                value={quickCategories.includes(active) ? '' : active}
+                onChange={(e) => {
+                  if (e.target.value) {
+                    setActive(e.target.value);
+                  }
+                }}
+                style={{
+                  padding: '0.5rem 2.2rem 0.5rem 0.8rem',
+                  backgroundColor: '#1A140F',
+                  border: '1px solid rgba(232,185,35,0.4)',
+                  color: quickCategories.includes(active) ? '#E8D9C7' : '#F5D97A',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  outline: 'none',
+                  fontSize: '0.78rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  fontFamily: 'var(--font-sans)',
+                  appearance: 'none',
+                  backgroundImage: 'url("data:image/svg+xml;utf8,<svg fill=\'%23E8B923\' height=\'24\' viewBox=\'0 0 24 24\' width=\'24\' xmlns=\'http://www.w3.org/2000/svg\'><path d=\'M7 10l5 5 5-5z\'/><path d=\'M0 0h24v24H0z\' fill=\'none\'/></svg>")',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'right 0.5rem top 50%',
+                  backgroundSize: '1.1rem',
+                  minWidth: '180px'
+                }}
+              >
+                <option value="" disabled style={{ color: 'rgba(232,220,203,0.4)' }}>
+                  {quickCategories.includes(active) ? 'Select Other Project' : active}
+                </option>
+                {galleryCategories
+                  .filter(cat => !quickCategories.includes(cat))
+                  .map(cat => (
+                    <option key={cat} value={cat} style={{ backgroundColor: '#2A2119', color: '#E8D9C7' }}>
+                      {cat}
+                    </option>
+                  ))
+                }
+              </select>
+              
+              {/* Reset selection helper if active is in dropdown */}
+              {!quickCategories.includes(active) && (
+                <button
+                  onClick={() => setActive('All')}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: '#E8B923',
+                    cursor: 'pointer',
+                    fontSize: '0.8rem',
+                    textDecoration: 'underline',
+                    padding: 0
+                  }}
+                >
+                  Clear
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Right: Search Input */}
+          <div style={{ position: 'relative', width: '100%', maxWidth: '280px', flex: '1 1 auto' }}>
+            <input 
+              type="text" 
+              placeholder="Search by title or project..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               style={{
-                padding: '1.1rem 1.4rem',
-                background: 'none', 
-                border: 'none',
-                borderBottom: active === cat ? '3px solid #E8B923' : '3px solid transparent',
-                color: active === cat ? '#F5D97A' : 'rgba(232,220,203,0.65)',
-                fontSize: '0.82rem', 
-                letterSpacing: '0.1em', 
-                textTransform: 'uppercase',
-                cursor: 'pointer', 
-                fontWeight: active === cat ? 600 : 500,
-                whiteSpace: 'nowrap',
-                transition: 'all 0.3s ease',
+                width: '100%',
+                padding: '0.5rem 2.2rem 0.5rem 0.8rem',
+                backgroundColor: '#1A140F',
+                border: '1px solid rgba(232,185,35,0.4)',
+                color: '#FAF8F5',
+                borderRadius: '4px',
+                fontSize: '0.8rem',
+                outline: 'none',
+                fontFamily: 'var(--font-sans)',
+                boxSizing: 'border-box'
               }}
-            >
-              {cat}
-            </button>
-          ))}
+            />
+            {/* Search Icon */}
+            <span style={{
+              position: 'absolute',
+              right: '25px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              color: 'rgba(232,185,35,0.5)',
+              pointerEvents: 'none',
+              fontSize: '0.85rem'
+            }}>
+              🔍
+            </span>
+            {searchQuery && (
+              <button 
+                onClick={() => setSearchQuery('')}
+                style={{
+                  position: 'absolute',
+                  right: '8px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  color: '#E8B923',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                  padding: 0
+                }}
+              >
+                ✕
+              </button>
+            )}
+          </div>
         </div>
       </section>
 
@@ -143,80 +286,113 @@ export default function Gallery() {
             {filtered.length} image{filtered.length !== 1 ? 's' : ''} • {active}
           </p>
 
-          <div className="gallery-grid masonry-grid" style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: '1.4rem',
-          }}>
-            {filtered.map(img => (
-              <div
-                key={img.id}
-                className="masonry-item"
-                onClick={() => setLightbox(img)}
-                style={{ 
-                  cursor: 'pointer', 
-                  position: 'relative', 
-                  overflow: 'hidden', 
-                  borderRadius: '8px',
-                  border: '1px solid rgba(232,185,35,0.25)',
-                  background: '#2A2119',
-                  transition: 'all 0.4s ease'
+          {filtered.length === 0 ? (
+            <div style={{
+              textAlign: 'center',
+              padding: '6rem 2rem',
+              border: '1px dashed rgba(232,185,35,0.25)',
+              borderRadius: '8px',
+              backgroundColor: '#2A2119',
+              color: '#E8D9C7',
+            }}>
+              <p style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: '#F5D97A', fontFamily: 'var(--font-serif)' }}>No Images Found</p>
+              <p style={{ fontSize: '0.9rem', opacity: 0.7 }}>Try adjusting your search query or filter categories.</p>
+              <button 
+                onClick={() => { setActive('All'); setSearchQuery(''); }}
+                style={{
+                  marginTop: '1.5rem',
+                  padding: '0.6rem 1.5rem',
+                  backgroundColor: '#E8B923',
+                  border: 'none',
+                  borderRadius: '4px',
+                  color: '#1A140F',
+                  cursor: 'pointer',
+                  fontWeight: 600,
+                  fontSize: '0.8rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em'
                 }}
               >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="gallery-img"
-                  style={{
-                    width: '100%',
-                    height: '320px',
-                    objectFit: 'cover',
-                    display: 'block',
-                    transition: 'transform 0.5s ease',
+                Clear all filters
+              </button>
+            </div>
+          ) : (
+            <div className="gallery-grid masonry-grid" style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+              gap: '1.4rem',
+            }}>
+              {filtered.map(img => (
+                <div
+                  key={img.id}
+                  className="masonry-item"
+                  onClick={() => setLightbox(img)}
+                  style={{ 
+                    cursor: 'pointer', 
+                    position: 'relative', 
+                    overflow: 'hidden', 
+                    borderRadius: '8px',
+                    border: '1px solid rgba(232,185,35,0.25)',
+                    background: '#2A2119',
+                    transition: 'all 0.4s ease'
                   }}
-                />
-                
-                {/* Rich Golden Overlay */}
-                <div className="gallery-overlay" style={{
-                  position: 'absolute', 
-                  inset: 0,
-                  background: 'linear-gradient(transparent, rgba(26,20,15,0.92))',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'flex-end',
-                  padding: '1.6rem 1.4rem',
-                  opacity: 0,
-                  transition: 'opacity 0.4s ease',
-                }}>
-                  <p style={{ 
-                    color: '#F5EDE4', 
-                    fontSize: '1.15rem', 
-                    fontWeight: 500,
-                    marginBottom: '0.3rem'
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    loading="lazy"
+                    className="gallery-img"
+                    style={{
+                      width: '100%',
+                      height: '320px',
+                      objectFit: 'cover',
+                      display: 'block',
+                      transition: 'transform 0.5s ease',
+                    }}
+                  />
+                  
+                  {/* Rich Golden Overlay */}
+                  <div className="gallery-overlay" style={{
+                    position: 'absolute', 
+                    inset: 0,
+                    background: 'linear-gradient(transparent, rgba(26,20,15,0.92))',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                    padding: '1.6rem 1.4rem',
+                    opacity: 0,
+                    transition: 'opacity 0.4s ease',
                   }}>
-                    {img.title}
-                  </p>
-                  <p style={{ 
-                    color: '#E8B923', 
-                    fontSize: '0.78rem', 
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase'
-                  }}>
-                    {img.category}
-                  </p>
-                </div>
+                    <p style={{ 
+                      color: '#F5EDE4', 
+                      fontSize: '1.15rem', 
+                      fontWeight: 500,
+                      marginBottom: '0.3rem'
+                    }}>
+                      {img.title}
+                    </p>
+                    <p style={{ 
+                      color: '#E8B923', 
+                      fontSize: '0.78rem', 
+                      letterSpacing: '0.08em',
+                      textTransform: 'uppercase'
+                    }}>
+                      {img.category}
+                    </p>
+                  </div>
 
-                <style>{`
-                  .masonry-item:hover img {
-                    transform: scale(1.08);
-                  }
-                  .masonry-item:hover .gallery-overlay {
-                    opacity: 1;
-                  }
-                `}</style>
-              </div>
-            ))}
-          </div>
+                  <style>{`
+                    .masonry-item:hover img {
+                      transform: scale(1.08);
+                    }
+                    .masonry-item:hover .gallery-overlay {
+                      opacity: 1;
+                    }
+                  `}</style>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
