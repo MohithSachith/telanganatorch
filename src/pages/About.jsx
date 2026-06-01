@@ -15,7 +15,7 @@ const team = [
   { name: 'Sunil', role: 'Executive Member', image: '/gallery/team/sunil.jpg', bio: 'Digital archivist leading the photography and cataloging of endangered rock art sites.' },
   { name: 'Dr. K. Sharmila Reddy', role: 'Board Member', image: '/gallery/team/placeholder.png', bio: 'Academic researcher and advisor on intangible cultural heritage and local folklore traditions.' },
   { name: 'Srinadh Reddy', role: 'Board Member', image: '/gallery/team/placeholder.png', bio: 'Environmental specialist advising on the integration of natural landscapes and heritage preservation.' },
-  { name: 'Sri Uha', role: 'Executive Member', image: '/gallery/team/sri_uha.jpg', bio: 'Archaeologist specializing in early historic settlements and material culture analysis.' },
+  { name: 'Sri Uha', role: 'Author & Social Entrepreneur', image: '/gallery/team/sri_uha.jpg', bio: 'Author of Isuka Addam and Balkav, Sikka, and social entrepreneur (IIM-K & NALSAR alumna) leading community outreach and women empowerment at TORCH.' },
 ]
 
 const timeline = [
