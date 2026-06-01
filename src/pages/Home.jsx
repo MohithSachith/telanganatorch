@@ -300,17 +300,8 @@ export default function Home() {
         alignItems: 'center', justifyContent: 'center',
         overflow: 'hidden', padding: '6rem 2rem 4rem',
       }}>
-        <div style={{
-          position: 'absolute', inset: 0,
-          backgroundImage: 'url("/gallery/temples/2.jpg")',
-          backgroundSize: 'cover', backgroundPosition: 'center 35%',
-          transform: `scale(${heroScale}) translateY(${scrollY * 0.1}px)`,
-          filter: 'brightness(1.18) contrast(1.08)',
-          zIndex: 1,
-        }} />
-        
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(26,20,15,0.4) 0%, rgba(26,20,15,0.75) 50%, #1A140F 100%)', zIndex: 2 }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(232,185,35,0.22) 0%, transparent 65%)', zIndex: 2 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(26,20,15,0.85) 0%, rgba(26,20,15,0.95) 50%, #1A140F 100%)', zIndex: 2 }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at center, rgba(232,185,35,0.18) 0%, transparent 65%)', zIndex: 2 }} />
 
         <div className="home-hero-content" style={{ position: 'relative', zIndex: 4, maxWidth: '850px', textAlign: 'center' }}>
           <img src="/logo-torch-main.png" alt="TORCH" className="home-hero-logo" style={{ 
